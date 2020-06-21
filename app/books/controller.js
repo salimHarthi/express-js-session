@@ -2,7 +2,6 @@ const db = require("../../db/models");
 const Books = require("../../db/models").books;
 
 class Book_controller {
-  //constructor() {}
   // get books
   async getAllBooks(req, res) {
     const books = await Books.findAll();
