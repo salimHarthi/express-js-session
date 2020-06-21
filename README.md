@@ -1,8 +1,5 @@
 # express-js-session
 ### Agenda
-* how to log requests
-* Cross-Origin Resources Sharing
-* using json for request
-* connect to db with sequelize
-* create model (table) using sequelize
-* write and read data using sequelize
+* (post request),(get request ),(put request),(delete request)
+* update and destroy functions with sequelize
+* updating data in a dynamic way
