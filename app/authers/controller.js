@@ -36,6 +36,13 @@ class Book_controller {
     await Authors.destroy({ where: { id: req.params.authorId } });
     return "deleted";
   }
+  // get auther with all books
+  async getAutherWithAllBooks(req, res) {
+    var authors = await Authors.findByPk(req.params.authorId, {
+      include: [{ model: Books }],
+    });
+    return authors;
+  }
 }
 
 module.exports = Book_controller;

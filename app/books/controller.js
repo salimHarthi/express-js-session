@@ -1,7 +1,8 @@
 const db = require("../../db/models");
 const Books = require("../../db/models").books;
-var Authors = require("../authers/controller");
-var Authors = new Authors();
+const Authors = require("../../db/models").authors;
+var Authors_controller = require("../authers/controller");
+var Authors_controller = new Authors_controller();
 class Book_controller {
   // get books
   async getAllBooks(req, res) {
@@ -40,12 +41,20 @@ class Book_controller {
 
   //add book and author
   async addBooksAndAuthor(req, res) {
-    var author = await Authors.addAuther(req, res);
-    const books = await Books.create({
+    var author = await Authors_controller.addAuther(req, res);
+    newbook = {
       title: req.body.title,
       isbn: req.body.isbn,
       description: req.body.description,
       authorId: author.id,
+    };
+    const books = await Books.create(newbook);
+    return books;
+  }
+
+  async getBooksWithAllAuther(req, res) {
+    var books = await Books.findByPk(req.params.bookId, {
+      include: [{ model: Authors, attributes: ["lastName"] }],
     });
     return books;
   }

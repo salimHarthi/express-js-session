@@ -23,6 +23,16 @@ router.get("/get/author", async (req, res) => {
     utils.createErrorResponse(res, "error", error);
   }
 });
+
+router.get("/get/author/withbook/:authorId", async (req, res) => {
+  try {
+    var author = await Authors.getAutherWithAllBooks(req, res);
+    utils.responseWithDataCheck(res, author);
+  } catch (error) {
+    utils.createErrorResponse(res, "error", error);
+  }
+});
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 router.put("/edit/author/:authorId", async (req, res) => {
